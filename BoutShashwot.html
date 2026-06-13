@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shashwot's Portfolio | Freelance Professional</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #03050a;
+            --bg-card: #0a0f1d;
+            --accent: #00f0ff;
+            --accent-glow: rgba(0, 240, 255, 0.5);
+            --pink-neon: #ff00ff;
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* 1. Dashboard Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 8%;
+            background: rgba(3, 5, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            text-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        nav a.hire-btn {
+            background: linear-gradient(45deg, #00f0ff, #0080ff);
+            color: #000;
+            padding: 0.6rem 1.4rem;
+            border-radius: 30px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        nav a.hire-btn:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+            color: #fff;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .ambient-bg {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw;
+            height: 70vw;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.08) 0%, transparent 60%);
+            animation: pulseBg 8s infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+        }
+
+        /* Animated Greeting Text */
+        .greet-text {
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 3.5rem;
+            background: linear-gradient(90deg, #00f0ff, #ff00ff, #00f0ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: colorShift 5s linear infinite, popIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        @keyframes colorShift {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes popIn {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Animated Booking Banner */
+        .booking-banner {
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 3.5rem;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--accent);
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            background-repeat: no-repeat;
+            background-size: 80%;
+            -webkit-background-clip: text;
+            animation: shineText 3s linear infinite, bounceText 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes shineText {
+            0% { background-position: -500%; }
+            100% { background-position: 500%; }
+        }
+
+        @keyframes bounceText {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.03); text-shadow: 0 0 15px var(--accent-glow); }
+        }
+
+        /* Stats Section */
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .stat-box {
+            background: rgba(10, 15, 29, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 2.5rem;
+            border-radius: 20px;
+            flex: 1;
+            min-width: 250px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 240, 255, 0.2);
+            background: rgba(10, 15, 29, 0.9);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        /* Services Area */
+        .services-section {
+            padding: 6rem 10%;
+            text-align: center;
+            position: relative;
+        }
+
+        /* NEW CYBERPUNK BLINKING HEADING */
+        .cyberpunk-heading {
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4rem;
+            background: linear-gradient(90deg, var(--accent), var(--pink-neon), var(--accent));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4));
+            animation: colorShift 4s linear infinite, cyberBlink 3s infinite;
+        }
+
+        @keyframes cyberBlink {
+            0%, 88%, 92%, 96%, 100% { opacity: 1; filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.6)); }
+            90%, 94% { opacity: 0.3; filter: drop-shadow(0 0 2px rgba(255, 0, 255, 0.2)); }
+        }
+
+        .service-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            width: 320px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(0, 240, 255, 0.15), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover i {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* WORKING PROCESS SECTION */
+        .process-wrapper {
+            margin-top: 8rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .process-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 0, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            width: 260px;
+            text-align: left;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            border-color: var(--pink-neon);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(255, 0, 255, 0.15);
+            background: rgba(255, 0, 255, 0.05);
+        }
+
+        .step-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(255, 0, 255, 0.2);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            transition: color 0.3s;
+        }
+
+        .process-step:hover .step-number {
+            color: rgba(255, 0, 255, 0.5);
+        }
+
+        .process-step h4 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .process-step p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 10%;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-main) 0%, #0a0f1d 100%);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.2rem 2.5rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-main);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .contact-btn i {
+            font-size: 1.4rem;
+            color: var(--accent);
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--accent);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(0, 240, 255, 0.2);
+        }
+
+        .contact-btn:hover i {
+            transform: scale(1.2) rotate(15deg);
+        }
+
+        .flashy-email {
+            background: rgba(0, 240, 255, 0.1);
+            border-color: var(--accent);
+            animation: flashyPulse 1.5s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+
+        @keyframes flashyPulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(0, 240, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: #020305;
+        }
+
+        .hidden-element {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .show-element {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">SHASHWOT'S PORTFOLIO</div>
+        <nav>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="hire-btn">Hire Me</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="ambient-bg"></div>
+
+        <div class="greet-text">READY TO ELEVATE<br>YOUR PROJECT?</div>
+        
+        <div class="booking-banner">
+            EFFICIENCY SIMPLIFIED<br> GROWTH AMPLIFIED
+        </div>
+
+        <div class="stats-container hidden-element">
+            <div class="stat-box">
+                <div class="stat-number">10+</div>
+                <div class="stat-text">Website Launched</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">100k+</div>
+                <div class="stat-text">Words Formulated<br>and Published</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">99%</div>
+                <div class="stat-text">Satisfactory Service<br>Customer Response</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <!-- CYBERPUNK BLINKING HEADING -->
+        <h2 class="cyberpunk-heading hidden-element">My Freelance Services</h2>
+        
+        <div class="service-grid">
+            <div class="service-card hidden-element" style="transition-delay: 0.1s;">
+                <i class="fas fa-palette"></i>
+                <h3>Graphics Designing</h3>
+                <p>High-end visual branding and graphic solutions tailored to make your business stand out in a competitive market.</p>
+            </div>
+            <div class="service-card hidden-element" style="transition-delay: 0.2s;">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Portfolio Website Creation</h3>
+                <p>I build sleek, professional portfolio websites designed to showcase your unique talents and attract global opportunities.</p>
+            </div>
+            <div class="service-card hidden-element" style="transition-delay: 0.3s;">
+                <i class="fas fa-keyboard"></i>
+                <h3>Professional Content</h3>
+                <p>Expertly crafted blogs, articles, and journals that engage your audience and build your online authority.</p>
+            </div>
+        </div>
+
+        <!-- WORKING PROCESS SECTION -->
+        <div class="process-wrapper">
+            <h2 class="section-title hidden-element">My Working Style</h2>
+            <div class="process-grid">
+                <div class="process-step hidden-element" style="transition-delay: 0.1s;">
+                    <div class="step-number">01</div>
+                    <h4>Discovery</h4>
+                    <p>I dive deep into your project goals, audience, and vision to map out the perfect strategy.</p>
+                </div>
+                <div class="process-step hidden-element" style="transition-delay: 0.2s;">
+                    <div class="step-number">02</div>
+                    <h4>Creation</h4>
+                    <p>Fusing creativity with technical precision to draft, design, and develop your project.</p>
+                </div>
+                <div class="process-step hidden-element" style="transition-delay: 0.3s;">
+                    <div class="step-number">03</div>
+                    <h4>Refinement</h4>
+                    <p>Collaborating with you for feedback, making pixel-perfect adjustments and content tweaks.</p>
+                </div>
+                <div class="process-step hidden-element" style="transition-delay: 0.4s;">
+                    <div class="step-number">04</div>
+                    <h4>Delivery</h4>
+                    <p>Deploying the final product with seamless execution, ready to conquer the market.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2 class="section-title hidden-element">Ready To Hire Me?</h2>
+        <p class="hidden-element" style="color: var(--text-muted); font-size: 1.1rem;">Tap the flashing email or WhatsApp to securely send your project details.</p>
+        
+        <div class="contact-grid">
+            <a href="mailto:shashwotsubedi1@gmail.com" class="contact-btn flashy-email hidden-element" style="transition-delay: 0.1s;">
+                <i class="fas fa-paper-plane"></i> Email Me
+            </a>
+
+            <a href="https://wa.me/9743823826" target="_blank" class="contact-btn hidden-element" style="transition-delay: 0.2s;">
+                <i class="fab fa-whatsapp"></i> +974 3823826
+            </a>
+            
+            <a href="tel:9743823826" class="contact-btn hidden-element" style="transition-delay: 0.3s;">
+                <i class="fas fa-phone"></i> +974 3823826
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Shashwot Subedi. Built For Professional Excellence.
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show-element');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const hiddenElements = document.querySelectorAll('.hidden-element');
+            hiddenElements.forEach((el) => observer.observe(el));
+        });
+    </script>
+    </body>
+    </html> 
+
